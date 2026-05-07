@@ -1,3 +1,0 @@
-username = shreyashnpatil123_db_user
-pass = fOOGK6UuevH4LOGp
-SRV connection string = mongodb+srv://shreyashnpatil123_db_user:fOOGK6UuevH4LOGp@yt-nxtgen-db.21bto3b.mongodb.net/?appName=YT-NXTGEN-db
