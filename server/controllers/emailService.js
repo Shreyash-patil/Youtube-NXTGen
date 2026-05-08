@@ -1,12 +1,18 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+let transporter = null;
+function getTransporter() {
+  if (!transporter) {
+    transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  }
+  return transporter;
+}
 
 /**
  * Send a styled HTML invoice email after a successful plan upgrade.
@@ -174,7 +180,7 @@ export const sendInvoiceEmail = async ({
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    await getTransporter().sendMail(mailOptions);
     console.log(`Invoice email sent to ${userEmail}`);
   } catch (error) {
     console.error("Failed to send invoice email:", error.message);
