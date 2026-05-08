@@ -32,8 +32,8 @@ export default function LikedVideosContent() {
 
     try {
       const likedData = await axiosInstance.get(`/like/${user?._id}`);
-
-      setLikedVideos(likedData.data);
+      const validVideos = likedData.data.filter((item: any) => item.videoid);
+      setLikedVideos(validVideos);
     } catch (error) {
       console.error("Error loading liked videos:", error);
     } finally {
